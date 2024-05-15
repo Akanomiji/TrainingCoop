@@ -113,6 +113,7 @@ namespace TrainingCoop
             EmployeePosition.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
             sex = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
             //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString() + "");
+
             pictureBox1.Image = (Image)dataGridView1.Rows[e.RowIndex].Cells[5].Value;
         }
 
