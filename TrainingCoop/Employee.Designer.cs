@@ -287,14 +287,13 @@
             // 
             // dItemCode
             // 
-            dItemCode.Frozen = true;
+            dItemCode.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dItemCode.HeaderText = "Code";
             dItemCode.Name = "dItemCode";
             dItemCode.ReadOnly = true;
             // 
             // dItemName
             // 
-            dItemName.Frozen = true;
             dItemName.HeaderText = "Name";
             dItemName.Name = "dItemName";
             dItemName.ReadOnly = true;
@@ -302,7 +301,6 @@
             // 
             // dSalary
             // 
-            dSalary.Frozen = true;
             dSalary.HeaderText = "Salary";
             dSalary.Name = "dSalary";
             dSalary.ReadOnly = true;
@@ -310,7 +308,6 @@
             // 
             // dPosition
             // 
-            dPosition.Frozen = true;
             dPosition.HeaderText = "Position";
             dPosition.Name = "dPosition";
             dPosition.ReadOnly = true;
@@ -318,7 +315,6 @@
             // 
             // dSex
             // 
-            dSex.Frozen = true;
             dSex.HeaderText = "Sex";
             dSex.Name = "dSex";
             dSex.ReadOnly = true;
@@ -326,7 +322,6 @@
             // 
             // dPic
             // 
-            dPic.AutoSizeMode = DataGridViewAutoSizeColumnMode.Fill;
             dPic.HeaderText = "Picture";
             dPic.ImageLayout = DataGridViewImageCellLayout.Stretch;
             dPic.Name = "dPic";
@@ -361,6 +356,7 @@
             Controls.Add(EmployeePosition);
             Name = "Employee";
             Text = "Employee";
+            Load += Employee_Load;
             ((System.ComponentModel.ISupportInitialize)pictureBox1).EndInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);

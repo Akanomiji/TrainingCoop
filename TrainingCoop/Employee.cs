@@ -114,10 +114,10 @@ namespace TrainingCoop
             sex = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
             //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString() + "");
 
-            pictureBox1.Image = (Image)dataGridView1.Rows[e.RowIndex].Cells[5].Value; // view picture collum in picturebox
+            pictureBox1.Image = (Image)dataGridView1.Rows[e.RowIndex].Cells[5].Value; // view picture column in picturebox
         }
 
-            private void bAdd_Click(object sender, EventArgs e)
+        private void bAdd_Click(object sender, EventArgs e)
         {
             inSex();
             dataGridView1.Rows.Add();
@@ -127,8 +127,9 @@ namespace TrainingCoop
             dataGridView1.Rows[r - 1].Cells[2].Value = Salary.Text;
             dataGridView1.Rows[r - 1].Cells[3].Value = EmployeePosition.Text;
             dataGridView1.Rows[r - 1].Cells[4].Value = sex;
-            dataGridView1.Rows[r - 1].Cells[5].Value = pictureBox1.Image; // add picture to collum 
-            dataGridView1.Rows[r - 1].Height = 150; // collum height
+            dataGridView1.Rows[r - 1].Cells[5].Value = pictureBox1.Image; // add picture to column 
+            dataGridView1.Rows[r - 1].Height = 50; // column height
+            dataGridView1.Columns[5].Width = 50;  // column width 
 
         }
 
@@ -140,12 +141,18 @@ namespace TrainingCoop
             dataGridView1.Rows[r].Cells[2].Value = Salary.Text;
             dataGridView1.Rows[r].Cells[3].Value = EmployeePosition.Text;
             dataGridView1.Rows[r].Cells[4].Value = sex;
+            dataGridView1.Rows[r].Cells[5].Value = pictureBox1.Image;
         }
 
         private void bRemove_Click(object sender, EventArgs e)
         {
             int r = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(r);
+        }
+
+        private void Employee_Load(object sender, EventArgs e)
+        {
+
         }
     }
 }
