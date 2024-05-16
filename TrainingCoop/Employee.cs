@@ -3,6 +3,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Diagnostics;
+using System.Diagnostics.Metrics;
 using System.Drawing;
 using System.Linq;
 using System.Reflection.Emit;
@@ -27,6 +28,18 @@ namespace TrainingCoop
             if (e.KeyCode == Keys.Enter)
             {
                 employeeName.Focus();
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[1].Value + "" == employeeCode.Text)
+                    {
+                        employeeCode.Text = dataGridView1.Rows[i].Cells[1].Value + "";
+                        employeeName.Text = dataGridView1.Rows[i].Cells[2].Value + "";
+                        Salary.Text = dataGridView1.Rows[i].Cells[3].Value + "";
+                        EmployeePosition.Text = dataGridView1.Rows[i].Cells[4].Value + "";
+                        sex = dataGridView1.Rows[i].Cells[5].Value + "";
+                        pictureBox1.Image = (Image)dataGridView1.Rows[i].Cells[6].Value;
+                    }
+                }
             }
         }
 

@@ -50,8 +50,6 @@
             bEdit = new Button();
             bAdd = new Button();
             dataGridView1 = new System.Windows.Forms.DataGridView();
-            label8 = new Label();
-            tTotalAmount = new TextBox();
             dRow = new DataGridViewTextBoxColumn();
             dItemCode = new DataGridViewTextBoxColumn();
             dItemName = new DataGridViewTextBoxColumn();
@@ -60,6 +58,8 @@
             dVat = new DataGridViewTextBoxColumn();
             dQty = new DataGridViewTextBoxColumn();
             dAmount = new DataGridViewTextBoxColumn();
+            label8 = new Label();
+            tTotalAmount = new TextBox();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -307,25 +307,6 @@
             dataGridView1.TabIndex = 17;
             dataGridView1.CellClick += dataGridView1_CellClick;
             // 
-            // label8
-            // 
-            label8.AutoSize = true;
-            label8.Location = new Point(604, 540);
-            label8.Name = "label8";
-            label8.Size = new Size(102, 21);
-            label8.TabIndex = 21;
-            label8.Text = "Total Amount";
-            // 
-            // tTotalAmount
-            // 
-            tTotalAmount.Location = new Point(712, 532);
-            tTotalAmount.Name = "tTotalAmount";
-            tTotalAmount.Size = new Size(162, 29);
-            tTotalAmount.TabIndex = 22;
-            tTotalAmount.Text = "0";
-            tTotalAmount.TextAlign = HorizontalAlignment.Right;
-            tTotalAmount.TextChanged += tTotalAmount_TextChanged;
-            // 
             // dRow
             // 
             dRow.HeaderText = "No.";
@@ -377,6 +358,25 @@
             dAmount.Name = "dAmount";
             dAmount.ReadOnly = true;
             // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(604, 540);
+            label8.Name = "label8";
+            label8.Size = new Size(102, 21);
+            label8.TabIndex = 21;
+            label8.Text = "Total Amount";
+            // 
+            // tTotalAmount
+            // 
+            tTotalAmount.Location = new Point(712, 532);
+            tTotalAmount.Name = "tTotalAmount";
+            tTotalAmount.Size = new Size(162, 29);
+            tTotalAmount.TabIndex = 22;
+            tTotalAmount.Text = "0";
+            tTotalAmount.TextAlign = HorizontalAlignment.Right;
+            tTotalAmount.TextChanged += tTotalAmount_TextChanged;
+            // 
             // Item
             // 
             AutoScaleDimensions = new SizeF(9F, 21F);
@@ -411,6 +411,7 @@
             Margin = new Padding(4);
             Name = "Item";
             Text = "Item";
+            Load += Item_Load;
             ((System.ComponentModel.ISupportInitialize)dataGridView1).EndInit();
             ResumeLayout(false);
             PerformLayout();

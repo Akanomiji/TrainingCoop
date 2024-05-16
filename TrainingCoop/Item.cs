@@ -24,6 +24,27 @@ namespace TrainingCoop
             if (e.KeyCode == Keys.Enter)
             {
                 itemName.Focus();
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[1].Value + "" == itemCode.Text)
+                    {
+                        itemName.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
+                        typeName.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
+                        price.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
+                        if (dataGridView1.Rows[i].Cells[5].Value + "" == Vat.Text)
+                        {
+                            Vat.Checked = true;
+                            //itemName.Focus();
+                        }
+                        else
+                        {
+                            noVat.Checked = true;
+                            //itemName.Focus();
+                        }
+                        qty.Text = dataGridView1.Rows[i].Cells[6].Value.ToString();
+                        amount.Text = dataGridView1.Rows[i].Cells[7].Value.ToString();
+                    }
+                }
             }
         }
 
@@ -47,11 +68,12 @@ namespace TrainingCoop
         {
             if (e.KeyCode == Keys.Enter)
             {
-                double vat = 1, amt = 0;
-                if (Vat.Checked)
-                    vat = 0.07;
+
                 try
                 {
+                    double vat = 1, amt = 0;
+                    if (Vat.Checked)
+                        vat = 0.07;
                     amt = (int.Parse(price.Text) * int.Parse(qty.Text)) * vat;
                     amount.Text = amt.ToString("#,###.00");
                 }
@@ -66,7 +88,7 @@ namespace TrainingCoop
 
         private void clearVat()
         {
-            price.Clear();
+            //price.Clear();
             qty.Clear();
             amount.Clear();
             price.Focus();
@@ -131,14 +153,14 @@ namespace TrainingCoop
             else { noVat.Checked = true; }
             qty.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
             amount.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
-            
+
 
         }
 
         private void bAdd_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Add();
-            int r = dataGridView1.Rows.Count-1;
+            int r = dataGridView1.Rows.Count - 1;
             dataGridView1.Rows[r].Cells[0].Value = r + 1;
             dataGridView1.Rows[r].Cells[1].Value = itemCode.Text;
             dataGridView1.Rows[r].Cells[2].Value = itemName.Text;
@@ -153,6 +175,8 @@ namespace TrainingCoop
             tTotalA = tTotalA + amt;
             tTotalAmount.Text = tTotalA.ToString();
 
+            bNew.PerformClick();
+
         }
 
         private void bEdit_Click(object sender, EventArgs e)
@@ -164,12 +188,12 @@ namespace TrainingCoop
             dataGridView1.Rows[r].Cells[4].Value = price.Text;
             dataGridView1.Rows[r].Cells[5].Value = isVat;
             dataGridView1.Rows[r].Cells[6].Value = qty.Text;
-            
+
 
 
             double amt = double.Parse(amount.Text);
             double tTotalA = double.Parse(tTotalAmount.Text);
-            double eTotalA = double.Parse(dataGridView1.Rows[r].Cells[7].Value + "" );
+            double eTotalA = double.Parse(dataGridView1.Rows[r].Cells[7].Value + "");
             tTotalA = (tTotalA - eTotalA) + amt;
             tTotalAmount.Text = tTotalA.ToString();
 
@@ -187,6 +211,11 @@ namespace TrainingCoop
         }
 
         private void tTotalAmount_TextChanged(object sender, EventArgs e)
+        {
+
+        }
+
+        private void Item_Load(object sender, EventArgs e)
         {
 
         }
