@@ -13,6 +13,7 @@ namespace TrainingCoop
     public partial class Item : Form
     {
         string isVat = "";
+        double pAmount = 0;
         public Item()
         {
             InitializeComponent();
@@ -119,49 +120,75 @@ namespace TrainingCoop
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            itemCode.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            itemName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            typeName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            price.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            if (dataGridView1.Rows[e.RowIndex].Cells[4].Value + "" == Vat.Text)
+            itemCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            itemName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            typeName.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            price.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            if (dataGridView1.Rows[e.RowIndex].Cells[5].Value + "" == Vat.Text)
             {
                 Vat.Checked = true;
             }
             else { noVat.Checked = true; }
-            qty.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
-            amount.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            qty.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
+            amount.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
+            
 
         }
 
         private void bAdd_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Add();
-            int r = dataGridView1.Rows.Count;
-            dataGridView1.Rows[r - 1].Cells[0].Value = itemCode.Text;
-            dataGridView1.Rows[r - 1].Cells[1].Value = itemName.Text;
-            dataGridView1.Rows[r - 1].Cells[2].Value = typeName.Text;
-            dataGridView1.Rows[r - 1].Cells[3].Value = price.Text;
-            dataGridView1.Rows[r - 1].Cells[4].Value = isVat;
-            dataGridView1.Rows[r - 1].Cells[5].Value = qty.Text;
-            dataGridView1.Rows[r - 1].Cells[6].Value = amount.Text;
+            int r = dataGridView1.Rows.Count-1;
+            dataGridView1.Rows[r].Cells[0].Value = r + 1;
+            dataGridView1.Rows[r].Cells[1].Value = itemCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = itemName.Text;
+            dataGridView1.Rows[r].Cells[3].Value = typeName.Text;
+            dataGridView1.Rows[r].Cells[4].Value = price.Text;
+            dataGridView1.Rows[r].Cells[5].Value = isVat;
+            dataGridView1.Rows[r].Cells[6].Value = qty.Text;
+            dataGridView1.Rows[r].Cells[7].Value = amount.Text;
+
+            double amt = double.Parse(amount.Text);
+            double tTotalA = double.Parse(tTotalAmount.Text);
+            tTotalA = tTotalA + amt;
+            tTotalAmount.Text = tTotalA.ToString();
+
         }
 
         private void bEdit_Click(object sender, EventArgs e)
         {
             int r = dataGridView1.CurrentCell.RowIndex;
-            dataGridView1.Rows[r].Cells[0].Value = itemCode.Text;
-            dataGridView1.Rows[r].Cells[1].Value = itemName.Text;
-            dataGridView1.Rows[r].Cells[2].Value = typeName.Text;
-            dataGridView1.Rows[r].Cells[3].Value = price.Text;
-            dataGridView1.Rows[r].Cells[4].Value = isVat;
-            dataGridView1.Rows[r].Cells[5].Value = qty.Text;
-            dataGridView1.Rows[r].Cells[6].Value = amount.Text;
+            dataGridView1.Rows[r].Cells[1].Value = itemCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = itemName.Text;
+            dataGridView1.Rows[r].Cells[3].Value = typeName.Text;
+            dataGridView1.Rows[r].Cells[4].Value = price.Text;
+            dataGridView1.Rows[r].Cells[5].Value = isVat;
+            dataGridView1.Rows[r].Cells[6].Value = qty.Text;
+            
+
+
+            double amt = double.Parse(amount.Text);
+            double tTotalA = double.Parse(tTotalAmount.Text);
+            double eTotalA = double.Parse(dataGridView1.Rows[r].Cells[7].Value + "" );
+            tTotalA = (tTotalA - eTotalA) + amt;
+            tTotalAmount.Text = tTotalA.ToString();
+
+            dataGridView1.Rows[r].Cells[7].Value = amount.Text;
+
+
         }
 
         private void bRemove_Click(object sender, EventArgs e)
         {
             int r = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(r);
+            for (int i = 0; i < dataGridView1.Rows.Count; i++) { dataGridView1.Rows[i].Cells[0].Value = i + 1; }
+
+        }
+
+        private void tTotalAmount_TextChanged(object sender, EventArgs e)
+        {
+
         }
     }
 }

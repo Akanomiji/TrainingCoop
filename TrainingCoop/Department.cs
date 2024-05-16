@@ -48,29 +48,31 @@ namespace TrainingCoop
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            departmentCode.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            departmentName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            departmentCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            departmentName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
         }
 
         private void bAdd_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Add();
-            int r = dataGridView1.Rows.Count;
-            dataGridView1.Rows[r - 1].Cells[0].Value = departmentCode.Text;
-            dataGridView1.Rows[r - 1].Cells[1].Value = departmentName.Text;
+            int r = dataGridView1.Rows.Count-1;
+            dataGridView1.Rows[r].Cells[0].Value = r + 1;
+            dataGridView1.Rows[r].Cells[1].Value = departmentCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = departmentName.Text;
         }
 
         private void bEdit_Click(object sender, EventArgs e)
         {
             int r = dataGridView1.CurrentCell.RowIndex;
-            dataGridView1.Rows[r].Cells[0].Value = departmentCode.Text;
-            dataGridView1.Rows[r].Cells[1].Value = departmentName.Text;
+            dataGridView1.Rows[r].Cells[1].Value = departmentCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = departmentName.Text;
         }
 
         private void bRemove_Click(object sender, EventArgs e)
         {
             int r = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(r);
+            for (int i = 0; i < dataGridView1.Rows.Count; i++) { dataGridView1.Rows[i].Cells[0].Value = i + 1; }
         }
     }
 }

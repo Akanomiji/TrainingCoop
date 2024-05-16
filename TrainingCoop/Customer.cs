@@ -51,17 +51,26 @@ namespace TrainingCoop
         private void bAdd_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Add();
-            int r = dataGridView1.Rows.Count;
-            dataGridView1.Rows[r - 1].Cells[0].Value = customerCode.Text;
-            dataGridView1.Rows[r - 1].Cells[1].Value = customerName.Text;
-            dataGridView1.Rows[r - 1].Cells[2].Value = County.Text;
+            int r = dataGridView1.Rows.Count - 1;
+            dataGridView1.Rows[r].Cells[0].Value = r + 1;
+            dataGridView1.Rows[r].Cells[1].Value = customerCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = customerName.Text;
+            dataGridView1.Rows[r].Cells[3].Value = County.Text;
         }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            customerCode.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            customerName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            County.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            customerCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            customerName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            County.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+        }
+
+        private void bEdit_Click(object sender, EventArgs e)
+        {
+            int r = dataGridView1.CurrentCell.RowIndex;
+            dataGridView1.Rows[r].Cells[1].Value = customerCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = customerName.Text;
+            dataGridView1.Rows[r].Cells[3].Value = County.Text;
         }
     }
 }

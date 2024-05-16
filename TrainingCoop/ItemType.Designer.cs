@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            DataGridViewCellStyle dataGridViewCellStyle1 = new DataGridViewCellStyle();
             label1 = new Label();
             label2 = new Label();
             typeCode = new TextBox();
@@ -36,11 +37,14 @@
             bShow = new Button();
             bClose = new Button();
             dataGridView1 = new System.Windows.Forms.DataGridView();
+            dRow = new DataGridViewTextBoxColumn();
             dItemCode = new DataGridViewTextBoxColumn();
             dItemName = new DataGridViewTextBoxColumn();
             bRemove = new Button();
             bEdit = new Button();
             bAdd = new Button();
+            bShowC = new Button();
+            bSearch = new Button();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
             // 
@@ -48,7 +52,7 @@
             // 
             label1.AutoSize = true;
             label1.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label1.Location = new Point(88, 114);
+            label1.Location = new Point(63, 110);
             label1.Name = "label1";
             label1.Size = new Size(114, 21);
             label1.TabIndex = 0;
@@ -59,7 +63,7 @@
             // 
             label2.AutoSize = true;
             label2.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label2.Location = new Point(408, 114);
+            label2.Location = new Point(383, 110);
             label2.Name = "label2";
             label2.Size = new Size(107, 21);
             label2.TabIndex = 1;
@@ -67,7 +71,7 @@
             // 
             // typeCode
             // 
-            typeCode.Location = new Point(208, 112);
+            typeCode.Location = new Point(183, 108);
             typeCode.Name = "typeCode";
             typeCode.Size = new Size(171, 23);
             typeCode.TabIndex = 2;
@@ -75,7 +79,7 @@
             // 
             // typeName
             // 
-            typeName.Location = new Point(521, 112);
+            typeName.Location = new Point(496, 108);
             typeName.Name = "typeName";
             typeName.Size = new Size(171, 23);
             typeName.TabIndex = 3;
@@ -118,16 +122,31 @@
             dataGridView1.AllowUserToAddRows = false;
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.BackgroundColor = Color.Lime;
+            dataGridViewCellStyle1.Alignment = DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = SystemColors.Control;
+            dataGridViewCellStyle1.Font = new Font("Segoe UI", 9F, FontStyle.Bold, GraphicsUnit.Point);
+            dataGridViewCellStyle1.ForeColor = SystemColors.WindowText;
+            dataGridViewCellStyle1.SelectionBackColor = SystemColors.Highlight;
+            dataGridViewCellStyle1.SelectionForeColor = SystemColors.HighlightText;
+            dataGridViewCellStyle1.WrapMode = DataGridViewTriState.True;
+            dataGridView1.ColumnHeadersDefaultCellStyle = dataGridViewCellStyle1;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dItemCode, dItemName });
-            dataGridView1.Location = new Point(208, 285);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dRow, dItemCode, dItemName });
+            dataGridView1.Location = new Point(121, 291);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(443, 183);
+            dataGridView1.Size = new Size(493, 183);
             dataGridView1.TabIndex = 7;
             dataGridView1.CellClick += dataGridView1_CellClick;
             dataGridView1.CellContentClick += dataGridView1_CellContentClick;
+            // 
+            // dRow
+            // 
+            dRow.HeaderText = "No.";
+            dRow.Name = "dRow";
+            dRow.ReadOnly = true;
+            dRow.Width = 50;
             // 
             // dItemCode
             // 
@@ -176,12 +195,34 @@
             bAdd.UseVisualStyleBackColor = false;
             bAdd.Click += bAdd_Click;
             // 
+            // bShowC
+            // 
+            bShowC.Location = new Point(556, 204);
+            bShowC.Name = "bShowC";
+            bShowC.Size = new Size(75, 45);
+            bShowC.TabIndex = 11;
+            bShowC.Text = "ShowCode";
+            bShowC.UseVisualStyleBackColor = true;
+            bShowC.Click += bShowC_Click;
+            // 
+            // bSearch
+            // 
+            bSearch.Location = new Point(556, 152);
+            bSearch.Name = "bSearch";
+            bSearch.Size = new Size(75, 36);
+            bSearch.TabIndex = 12;
+            bSearch.Text = "Search";
+            bSearch.UseVisualStyleBackColor = true;
+            bSearch.Click += bSearch_Click;
+            // 
             // ItemType
             // 
             AutoScaleDimensions = new SizeF(7F, 15F);
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(770, 623);
+            Controls.Add(bSearch);
+            Controls.Add(bShowC);
             Controls.Add(bRemove);
             Controls.Add(bEdit);
             Controls.Add(bAdd);
@@ -210,10 +251,13 @@
         private Button bShow;
         private Button bClose;
         private System.Windows.Forms.DataGridView dataGridView1;
-        private DataGridViewTextBoxColumn dItemCode;
-        private DataGridViewTextBoxColumn dItemName;
         private Button bRemove;
         private Button bEdit;
         private Button bAdd;
+        private Button bShowC;
+        private DataGridViewTextBoxColumn dRow;
+        private DataGridViewTextBoxColumn dItemCode;
+        private DataGridViewTextBoxColumn dItemName;
+        private Button bSearch;
     }
 }

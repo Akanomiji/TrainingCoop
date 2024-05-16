@@ -107,47 +107,49 @@ namespace TrainingCoop
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
-            employeeCode.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            employeeName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
-            Salary.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
-            EmployeePosition.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
-            sex = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            employeeCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            employeeName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            Salary.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            EmployeePosition.Text = dataGridView1.Rows[e.RowIndex].Cells[4].Value.ToString();
+            sex = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
             //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString() + "");
 
-            pictureBox1.Image = (Image)dataGridView1.Rows[e.RowIndex].Cells[5].Value; // view picture column in picturebox
+            pictureBox1.Image = (Image)dataGridView1.Rows[e.RowIndex].Cells[6].Value; // view picture column in picturebox
         }
 
         private void bAdd_Click(object sender, EventArgs e)
         {
             inSex();
             dataGridView1.Rows.Add();
-            int r = dataGridView1.Rows.Count;
-            dataGridView1.Rows[r - 1].Cells[0].Value = employeeCode.Text;
-            dataGridView1.Rows[r - 1].Cells[1].Value = employeeName.Text;
-            dataGridView1.Rows[r - 1].Cells[2].Value = Salary.Text;
-            dataGridView1.Rows[r - 1].Cells[3].Value = EmployeePosition.Text;
-            dataGridView1.Rows[r - 1].Cells[4].Value = sex;
-            dataGridView1.Rows[r - 1].Cells[5].Value = pictureBox1.Image; // add picture to column 
-            dataGridView1.Rows[r - 1].Height = 50; // column height
-            dataGridView1.Columns[5].Width = 50;  // column width 
+            int r = dataGridView1.Rows.Count-1;
+            dataGridView1.Rows[r].Cells[0].Value = r + 1;
+            dataGridView1.Rows[r].Cells[1].Value = employeeCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = employeeName.Text;
+            dataGridView1.Rows[r].Cells[3].Value = Salary.Text;
+            dataGridView1.Rows[r].Cells[4].Value = EmployeePosition.Text;
+            dataGridView1.Rows[r].Cells[5].Value = sex;
+            dataGridView1.Rows[r].Cells[6].Value = pictureBox1.Image; // add picture to column 
+            dataGridView1.Rows[r].Height = 50; // column height
+            dataGridView1.Columns[6].Width = 50;  // column width 
 
         }
 
         private void bEdit_Click(object sender, EventArgs e)
         {
             int r = dataGridView1.CurrentCell.RowIndex;
-            dataGridView1.Rows[r].Cells[0].Value = employeeCode.Text;
-            dataGridView1.Rows[r].Cells[1].Value = employeeName.Text;
-            dataGridView1.Rows[r].Cells[2].Value = Salary.Text;
-            dataGridView1.Rows[r].Cells[3].Value = EmployeePosition.Text;
-            dataGridView1.Rows[r].Cells[4].Value = sex;
-            dataGridView1.Rows[r].Cells[5].Value = pictureBox1.Image;
+            dataGridView1.Rows[r].Cells[1].Value = employeeCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = employeeName.Text;
+            dataGridView1.Rows[r].Cells[3].Value = Salary.Text;
+            dataGridView1.Rows[r].Cells[4].Value = EmployeePosition.Text;
+            dataGridView1.Rows[r].Cells[5].Value = sex;
+            dataGridView1.Rows[r].Cells[6].Value = pictureBox1.Image;
         }
 
         private void bRemove_Click(object sender, EventArgs e)
         {
             int r = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows.RemoveAt(r);
+            for (int i = 0; i < dataGridView1.Rows.Count; i++) { dataGridView1.Rows[i].Cells[0].Value = i + 1; }
         }
 
         private void Employee_Load(object sender, EventArgs e)

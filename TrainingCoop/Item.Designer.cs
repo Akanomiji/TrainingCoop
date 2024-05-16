@@ -50,6 +50,9 @@
             bEdit = new Button();
             bAdd = new Button();
             dataGridView1 = new System.Windows.Forms.DataGridView();
+            label8 = new Label();
+            tTotalAmount = new TextBox();
+            dRow = new DataGridViewTextBoxColumn();
             dItemCode = new DataGridViewTextBoxColumn();
             dItemName = new DataGridViewTextBoxColumn();
             dType = new DataGridViewTextBoxColumn();
@@ -259,7 +262,7 @@
             // bRemove
             // 
             bRemove.BackColor = Color.Lime;
-            bRemove.Location = new Point(530, 292);
+            bRemove.Location = new Point(530, 271);
             bRemove.Name = "bRemove";
             bRemove.Size = new Size(75, 45);
             bRemove.TabIndex = 20;
@@ -270,7 +273,7 @@
             // bEdit
             // 
             bEdit.BackColor = Color.Lime;
-            bEdit.Location = new Point(434, 292);
+            bEdit.Location = new Point(434, 271);
             bEdit.Name = "bEdit";
             bEdit.Size = new Size(75, 45);
             bEdit.TabIndex = 19;
@@ -281,7 +284,7 @@
             // bAdd
             // 
             bAdd.BackColor = Color.Lime;
-            bAdd.Location = new Point(340, 292);
+            bAdd.Location = new Point(340, 271);
             bAdd.Name = "bAdd";
             bAdd.Size = new Size(75, 45);
             bAdd.TabIndex = 18;
@@ -295,14 +298,40 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.BackgroundColor = Color.Lime;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dItemCode, dItemName, dType, dPrice, dVat, dQty, dAmount });
-            dataGridView1.Location = new Point(100, 373);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dRow, dItemCode, dItemName, dType, dPrice, dVat, dQty, dAmount });
+            dataGridView1.Location = new Point(100, 332);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(774, 183);
+            dataGridView1.Size = new Size(824, 183);
             dataGridView1.TabIndex = 17;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // label8
+            // 
+            label8.AutoSize = true;
+            label8.Location = new Point(604, 540);
+            label8.Name = "label8";
+            label8.Size = new Size(102, 21);
+            label8.TabIndex = 21;
+            label8.Text = "Total Amount";
+            // 
+            // tTotalAmount
+            // 
+            tTotalAmount.Location = new Point(712, 532);
+            tTotalAmount.Name = "tTotalAmount";
+            tTotalAmount.Size = new Size(162, 29);
+            tTotalAmount.TabIndex = 22;
+            tTotalAmount.Text = "0";
+            tTotalAmount.TextAlign = HorizontalAlignment.Right;
+            tTotalAmount.TextChanged += tTotalAmount_TextChanged;
+            // 
+            // dRow
+            // 
+            dRow.HeaderText = "No.";
+            dRow.Name = "dRow";
+            dRow.ReadOnly = true;
+            dRow.Width = 50;
             // 
             // dItemCode
             // 
@@ -354,6 +383,8 @@
             AutoScaleMode = AutoScaleMode.Font;
             BackColor = SystemColors.ActiveCaption;
             ClientSize = new Size(1029, 687);
+            Controls.Add(tTotalAmount);
+            Controls.Add(label8);
             Controls.Add(bRemove);
             Controls.Add(bEdit);
             Controls.Add(bAdd);
@@ -409,6 +440,9 @@
         private Button bEdit;
         private Button bAdd;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private Label label8;
+        private TextBox tTotalAmount;
+        private DataGridViewTextBoxColumn dRow;
         private DataGridViewTextBoxColumn dItemCode;
         private DataGridViewTextBoxColumn dItemName;
         private DataGridViewTextBoxColumn dType;

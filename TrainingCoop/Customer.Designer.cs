@@ -41,6 +41,7 @@
             bEdit = new Button();
             bAdd = new Button();
             dataGridView1 = new System.Windows.Forms.DataGridView();
+            dRow = new DataGridViewTextBoxColumn();
             dItemCode = new DataGridViewTextBoxColumn();
             dItemName = new DataGridViewTextBoxColumn();
             dCounty = new DataGridViewTextBoxColumn();
@@ -153,6 +154,7 @@
             bEdit.TabIndex = 13;
             bEdit.Text = "Edit";
             bEdit.UseVisualStyleBackColor = false;
+            bEdit.Click += bEdit_Click;
             // 
             // bAdd
             // 
@@ -171,14 +173,21 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.BackgroundColor = Color.Lime;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dItemCode, dItemName, dCounty });
-            dataGridView1.Location = new Point(216, 332);
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dRow, dItemCode, dItemName, dCounty });
+            dataGridView1.Location = new Point(157, 332);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
             dataGridView1.RowTemplate.Height = 25;
-            dataGridView1.Size = new Size(433, 183);
+            dataGridView1.Size = new Size(484, 183);
             dataGridView1.TabIndex = 11;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // dRow
+            // 
+            dRow.HeaderText = "No.";
+            dRow.Name = "dRow";
+            dRow.ReadOnly = true;
+            dRow.Width = 50;
             // 
             // dItemCode
             // 
@@ -242,6 +251,7 @@
         private Button bEdit;
         private Button bAdd;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn dRow;
         private DataGridViewTextBoxColumn dItemCode;
         private DataGridViewTextBoxColumn dItemName;
         private DataGridViewTextBoxColumn dCounty;

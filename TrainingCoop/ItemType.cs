@@ -52,9 +52,10 @@ namespace TrainingCoop
         {
             dataGridView1.Rows.Add();
             //MessageBox.Show(dataGridView1.Rows.Count + "");
-            int r = dataGridView1.Rows.Count;
-            dataGridView1.Rows[r - 1].Cells[0].Value = typeCode.Text;
-            dataGridView1.Rows[r - 1].Cells[1].Value = typeName.Text;
+            int r = dataGridView1.Rows.Count - 1;
+            dataGridView1.Rows[r].Cells[0].Value = r + 1;
+            dataGridView1.Rows[r].Cells[1].Value = typeCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = typeName.Text;
         }
 
         private void bRemove_Click(object sender, EventArgs e)
@@ -70,14 +71,15 @@ namespace TrainingCoop
             dataGridView1.Rows.RemoveAt(r);
             //dataGridView1.Rows[r].Cells[0].Value = typeCode.Text;
             //dataGridView1.Rows[r].Cells[1].Value = typeName.Text;
+            for (int i = 0; i < dataGridView1.Rows.Count; i++) { dataGridView1.Rows[i].Cells[0].Value = i + 1; }
 
         }
 
         private void bEdit_Click(object sender, EventArgs e)
         {
             int r = dataGridView1.CurrentCell.RowIndex;
-            dataGridView1.Rows[r].Cells[0].Value = typeCode.Text;
-            dataGridView1.Rows[r].Cells[1].Value = typeName.Text;
+            dataGridView1.Rows[r].Cells[1].Value = typeCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = typeName.Text;
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -88,8 +90,35 @@ namespace TrainingCoop
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //MessageBox.Show(e.RowIndex + "");
-            typeCode.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value.ToString();
-            typeName.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            typeCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
+            typeName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+        }
+
+        private void bShowC_Click(object sender, EventArgs e)
+        {
+
+            string Msb = "";
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                Msb = Msb + dataGridView1.Rows[i].Cells[0].Value + "\n";
+            }
+            MessageBox.Show(Msb + "");
+
+
+            /*
+            for (int i = 0; i< dataGridView1.RowCount; i++) { MessageBox.Show(dataGridView1.Rows[i].Cells[i].Value.ToString()); }
+            */
+        }
+
+        private void bSearch_Click(object sender, EventArgs e)
+        {
+            for (int i = 0;i < dataGridView1.RowCount;i++) 
+            {
+                if (dataGridView1.Rows[i].Cells[1].Value + "" == typeCode.Text ) 
+                {
+                    typeName.Text = dataGridView1.Rows[i].Cells[2].Value + "";
+                }
+            }
         }
     }
 }

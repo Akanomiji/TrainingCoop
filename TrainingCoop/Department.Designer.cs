@@ -39,6 +39,7 @@
             bEdit = new Button();
             bAdd = new Button();
             dataGridView1 = new System.Windows.Forms.DataGridView();
+            dRow = new DataGridViewTextBoxColumn();
             dItemCode = new DataGridViewTextBoxColumn();
             dItemName = new DataGridViewTextBoxColumn();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
@@ -151,7 +152,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.BackgroundColor = Color.Lime;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dItemCode, dItemName });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dRow, dItemCode, dItemName });
             dataGridView1.Location = new Point(191, 298);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -159,6 +160,13 @@
             dataGridView1.Size = new Size(443, 183);
             dataGridView1.TabIndex = 14;
             dataGridView1.CellClick += dataGridView1_CellClick;
+            // 
+            // dRow
+            // 
+            dRow.HeaderText = "No.";
+            dRow.Name = "dRow";
+            dRow.ReadOnly = true;
+            dRow.Width = 50;
             // 
             // dItemCode
             // 
@@ -211,6 +219,7 @@
         private Button bEdit;
         private Button bAdd;
         private System.Windows.Forms.DataGridView dataGridView1;
+        private DataGridViewTextBoxColumn dRow;
         private DataGridViewTextBoxColumn dItemCode;
         private DataGridViewTextBoxColumn dItemName;
     }

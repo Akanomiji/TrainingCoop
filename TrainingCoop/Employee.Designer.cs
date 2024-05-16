@@ -50,6 +50,7 @@
             bAdd = new Button();
             dataGridView1 = new System.Windows.Forms.DataGridView();
             label5 = new Label();
+            dRow = new DataGridViewTextBoxColumn();
             dItemCode = new DataGridViewTextBoxColumn();
             dItemName = new DataGridViewTextBoxColumn();
             dSalary = new DataGridViewTextBoxColumn();
@@ -266,7 +267,7 @@
             dataGridView1.AllowUserToDeleteRows = false;
             dataGridView1.BackgroundColor = Color.Lime;
             dataGridView1.ColumnHeadersHeightSizeMode = DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dItemCode, dItemName, dSalary, dPosition, dSex, dPic });
+            dataGridView1.Columns.AddRange(new DataGridViewColumn[] { dRow, dItemCode, dItemName, dSalary, dPosition, dSex, dPic });
             dataGridView1.Location = new Point(299, 121);
             dataGridView1.Name = "dataGridView1";
             dataGridView1.ReadOnly = true;
@@ -284,6 +285,13 @@
             label5.Size = new Size(34, 21);
             label5.TabIndex = 22;
             label5.Text = "เพศ";
+            // 
+            // dRow
+            // 
+            dRow.HeaderText = "No.";
+            dRow.Name = "dRow";
+            dRow.ReadOnly = true;
+            dRow.Width = 50;
             // 
             // dItemCode
             // 
@@ -386,6 +394,7 @@
         private Button bAdd;
         private System.Windows.Forms.DataGridView dataGridView1;
         private Label label5;
+        private DataGridViewTextBoxColumn dRow;
         private DataGridViewTextBoxColumn dItemCode;
         private DataGridViewTextBoxColumn dItemName;
         private DataGridViewTextBoxColumn dSalary;
