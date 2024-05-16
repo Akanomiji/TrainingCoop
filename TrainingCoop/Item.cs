@@ -68,13 +68,13 @@ namespace TrainingCoop
         {
             if (e.KeyCode == Keys.Enter)
             {
-
+                
                 try
                 {
-                    double vat = 1, amt = 0;
+                    double vat = 1, amt = int.Parse(price.Text) * int.Parse(qty.Text);
                     if (Vat.Checked)
                         vat = 0.07;
-                    amt = (int.Parse(price.Text) * int.Parse(qty.Text)) * vat;
+                    amt = amt-(amt * vat);
                     amount.Text = amt.ToString("#,###.00");
                 }
                 catch (Exception ex)
@@ -205,6 +205,10 @@ namespace TrainingCoop
         private void bRemove_Click(object sender, EventArgs e)
         {
             int r = dataGridView1.CurrentCell.RowIndex;
+            double tTotalA = double.Parse(tTotalAmount.Text);
+            double amt = double.Parse(dataGridView1.Rows[r].Cells[7].Value + "");
+            tTotalA = tTotalA + amt;
+            tTotalAmount.Text = tTotalA.ToString("#,##0.00");
             dataGridView1.Rows.RemoveAt(r);
             for (int i = 0; i < dataGridView1.Rows.Count; i++) { dataGridView1.Rows[i].Cells[0].Value = i + 1; }
 
