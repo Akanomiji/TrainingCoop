@@ -46,5 +46,11 @@ namespace TrainingCoop
             ItemType form = new ItemType();
             form.Show();
         }
+
+        private void inVoiceToolStripMenuItem_Click(object sender, EventArgs e)
+        {
+            InVoice form = new InVoice();
+            form.Show();
+        }
     }
 }

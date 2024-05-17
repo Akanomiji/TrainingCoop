@@ -49,7 +49,6 @@
             bEdit = new Button();
             bAdd = new Button();
             dataGridView1 = new System.Windows.Forms.DataGridView();
-            label5 = new Label();
             dRow = new DataGridViewTextBoxColumn();
             dItemCode = new DataGridViewTextBoxColumn();
             dItemName = new DataGridViewTextBoxColumn();
@@ -57,6 +56,7 @@
             dPosition = new DataGridViewTextBoxColumn();
             dSex = new DataGridViewTextBoxColumn();
             dPic = new DataGridViewImageColumn();
+            label5 = new Label();
             ((System.ComponentModel.ISupportInitialize)pictureBox1).BeginInit();
             ((System.ComponentModel.ISupportInitialize)dataGridView1).BeginInit();
             SuspendLayout();
@@ -231,6 +231,7 @@
             // bRemove
             // 
             bRemove.BackColor = Color.Lime;
+            bRemove.Enabled = false;
             bRemove.Location = new Point(739, 46);
             bRemove.Name = "bRemove";
             bRemove.Size = new Size(75, 45);
@@ -242,6 +243,7 @@
             // bEdit
             // 
             bEdit.BackColor = Color.Lime;
+            bEdit.Enabled = false;
             bEdit.Location = new Point(643, 46);
             bEdit.Name = "bEdit";
             bEdit.Size = new Size(75, 45);
@@ -275,16 +277,6 @@
             dataGridView1.Size = new Size(788, 371);
             dataGridView1.TabIndex = 17;
             dataGridView1.CellClick += dataGridView1_CellClick;
-            // 
-            // label5
-            // 
-            label5.AutoSize = true;
-            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
-            label5.Location = new Point(113, 349);
-            label5.Name = "label5";
-            label5.Size = new Size(34, 21);
-            label5.TabIndex = 22;
-            label5.Text = "เพศ";
             // 
             // dRow
             // 
@@ -334,6 +326,16 @@
             dPic.ImageLayout = DataGridViewImageCellLayout.Stretch;
             dPic.Name = "dPic";
             dPic.ReadOnly = true;
+            // 
+            // label5
+            // 
+            label5.AutoSize = true;
+            label5.Font = new Font("Segoe UI", 12F, FontStyle.Regular, GraphicsUnit.Point);
+            label5.Location = new Point(113, 349);
+            label5.Name = "label5";
+            label5.Size = new Size(34, 21);
+            label5.TabIndex = 22;
+            label5.Text = "เพศ";
             // 
             // Employee
             // 

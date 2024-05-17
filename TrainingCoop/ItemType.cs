@@ -15,6 +15,7 @@ namespace TrainingCoop
         public ItemType()
         {
             InitializeComponent();
+
         }
         private void typeCode_KeyDown(object sender, KeyEventArgs e)
         {
@@ -48,15 +49,111 @@ namespace TrainingCoop
 
         }
 
-        private void bAdd_Click(object sender, EventArgs e)
+        private void EButtonF()
+        {
+            bEdit.Enabled = false;
+            bRemove.Enabled = false;
+        }
+
+        private void EButtonT()
+        {
+            bEdit.Enabled = true;
+            bRemove.Enabled = true;
+        }
+
+        private void datagridAdd()
         {
             dataGridView1.Rows.Add();
-            //MessageBox.Show(dataGridView1.Rows.Count + "");
             int r = dataGridView1.Rows.Count - 1;
             dataGridView1.Rows[r].Cells[0].Value = r + 1;
             dataGridView1.Rows[r].Cells[1].Value = typeCode.Text;
             dataGridView1.Rows[r].Cells[2].Value = typeName.Text;
+            bNew.PerformClick();
+            EButtonF();
         }
+
+        
+        private int searchCode() 
+        {
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[1].Value + "" == typeCode.Text)
+                {
+                    
+                    return i;
+
+                }
+            }
+            return -1;
+        } 
+        
+
+        private void bAdd_Click(object sender, EventArgs e)
+        {
+            /*
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[1].Value + "" == typeCode.Text)
+                {
+                    MessageBox.Show("ข้อมูลซ้ำ");
+                    typeCode.Focus();
+                    return;
+                    
+                }
+            }
+            */
+            int index = searchCode();
+            if (index >= 0) 
+            { 
+                MessageBox.Show("ข้อมูลซ้ำ");
+                typeCode.Focus();
+                return;
+            }
+
+
+
+
+            dataGridView1.Rows.Add();
+            int r = dataGridView1.Rows.Count - 1;
+            dataGridView1.Rows[r].Cells[0].Value = r + 1;
+            dataGridView1.Rows[r].Cells[1].Value = typeCode.Text;
+            dataGridView1.Rows[r].Cells[2].Value = typeName.Text;
+            bNew.PerformClick();
+            EButtonF();
+
+            /*
+            if (dataGridView1.Rows.Count == 0)
+            {
+                datagridAdd();
+            }
+            else
+            {
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[1].Value + "" != typeCode.Text)
+                    {
+                        datagridAdd();
+                        break;
+                        if (dataGridView1.Rows[i].Cells[1].Value + "" != typeName.Text) 
+                        { 
+                            datagridAdd();
+                            break;
+                        }
+
+                    }
+                    else
+                    {
+                        MessageBox.Show("Data Duplicate");
+                        bNew.PerformClick();
+                        EButtonF();
+                        break;
+                    }
+                }
+            }
+            */
+            //MessageBox.Show(dataGridView1.Rows.Count + "");
+        }
+
 
         private void bRemove_Click(object sender, EventArgs e)
         {
@@ -72,6 +169,7 @@ namespace TrainingCoop
             //dataGridView1.Rows[r].Cells[0].Value = typeCode.Text;
             //dataGridView1.Rows[r].Cells[1].Value = typeName.Text;
             for (int i = 0; i < dataGridView1.Rows.Count; i++) { dataGridView1.Rows[i].Cells[0].Value = i + 1; }
+            EButtonF();
 
         }
 
@@ -80,6 +178,7 @@ namespace TrainingCoop
             int r = dataGridView1.CurrentCell.RowIndex;
             dataGridView1.Rows[r].Cells[1].Value = typeCode.Text;
             dataGridView1.Rows[r].Cells[2].Value = typeName.Text;
+            EButtonF();
         }
 
         private void dataGridView1_CellContentClick(object sender, DataGridViewCellEventArgs e)
@@ -90,8 +189,10 @@ namespace TrainingCoop
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             //MessageBox.Show(e.RowIndex + "");
+            EButtonT();
             typeCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             typeName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+
         }
 
         private void bShowC_Click(object sender, EventArgs e)
@@ -112,6 +213,15 @@ namespace TrainingCoop
 
         private void bSearch_Click(object sender, EventArgs e)
         {
+
+            int i = searchCode();
+            if (i > 0)
+            {
+                dataGridView1.CurrentCell = dataGridView1[0, i];
+                typeName.Text = dataGridView1[2, i].Value + "ข้อมูลซ้ำ";
+            }
+
+            /*
             for (int i = 0;i < dataGridView1.RowCount;i++) 
             {
                 if (dataGridView1.Rows[i].Cells[1].Value + "" == typeCode.Text ) 
@@ -121,6 +231,27 @@ namespace TrainingCoop
                     break;
                 }
             }
+        }
+            */
+
+
+            /*
+            private void detect() 
+            {
+                for (int i = 0; i < dataGridView1.RowCount; i++)
+                {
+                    if (dataGridView1.Rows[i].Cells[1].Value + "" == typeCode.Text&& dataGridView1.Rows[i].Cells[2].Value + "" == typeName.Text)
+                    {
+                        dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[0];
+                        typeCode.Text = dataGridView1.Rows[i].Cells[1].Value + "";
+                        typeName.Text = dataGridView1.Rows[i].Cells[2].Value + "";
+                        MessageBox.Show("");
+                        break;
+                    }
+                }
+            }
+            */
+
         }
     }
 }

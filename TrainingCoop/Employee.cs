@@ -21,13 +21,32 @@ namespace TrainingCoop
             InitializeComponent();
             inSex();
         }
+        private int searchCode()
+        {
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[1].Value + "" == employeeCode.Text)
+                {
+                    return i;
 
+                }
+            }
+            return -1;
+        }
 
         private void employeeCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 employeeName.Focus();
+                int index = searchCode();
+                if (index >= 0)
+                {
+                    MessageBox.Show("ข้อมูลซ้ำ");
+                    employeeCode.Focus();
+                    return;
+                }
+                /*
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
                     if (dataGridView1.Rows[i].Cells[1].Value + "" == employeeCode.Text)
@@ -41,6 +60,7 @@ namespace TrainingCoop
                         pictureBox1.Image = (Image)dataGridView1.Rows[i].Cells[6].Value;
                     }
                 }
+                */
             }
         }
 
@@ -118,6 +138,17 @@ namespace TrainingCoop
             openFileDialog1.ShowDialog();
             pictureBox1.Image = System.Drawing.Image.FromFile(openFileDialog1.FileName);
         }
+        private void EButtonF()
+        {
+            bEdit.Enabled = false;
+            bRemove.Enabled = false;
+        }
+
+        private void EButtonT()
+        {
+            bEdit.Enabled = true;
+            bRemove.Enabled = true;
+        }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
@@ -129,6 +160,7 @@ namespace TrainingCoop
             //MessageBox.Show(dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString() + "");
 
             pictureBox1.Image = (Image)dataGridView1.Rows[e.RowIndex].Cells[6].Value; // view picture column in picturebox
+            EButtonT();
         }
 
         private void bAdd_Click(object sender, EventArgs e)
@@ -145,6 +177,7 @@ namespace TrainingCoop
             dataGridView1.Rows[r].Cells[6].Value = pictureBox1.Image; // add picture to column 
             dataGridView1.Rows[r].Height = 50; // column height
             dataGridView1.Columns[6].Width = 50;  // column width 
+            EButtonF();
 
         }
 

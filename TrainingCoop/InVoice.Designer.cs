@@ -329,6 +329,7 @@
             // 
             // bEdit
             // 
+            bEdit.Enabled = false;
             bEdit.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             bEdit.Location = new Point(468, 346);
             bEdit.Name = "bEdit";
@@ -340,6 +341,7 @@
             // 
             // bRemove
             // 
+            bRemove.Enabled = false;
             bRemove.Font = new Font("Microsoft Sans Serif", 9.75F, FontStyle.Regular, GraphicsUnit.Point);
             bRemove.Location = new Point(562, 346);
             bRemove.Name = "bRemove";

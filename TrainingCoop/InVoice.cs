@@ -125,6 +125,18 @@ namespace TrainingCoop
 
         }
 
+        private void EButtonF()
+        {
+            bEdit.Enabled = false;
+            bRemove.Enabled = false;
+        }
+
+        private void EButtonT()
+        {
+            bEdit.Enabled = true;
+            bRemove.Enabled = true;
+        }
+
         private void bAdd_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Add();
@@ -154,7 +166,7 @@ namespace TrainingCoop
             tVat.Text = vat.ToString("#,##0.00");
             tTotal.Text = total.ToString("#,##0.00");
             tTotalAmount.Text = tTotalA.ToString("#,##0.00");
-
+            EButtonF();
             //bNew.PerformClick();
 
         }
@@ -289,6 +301,7 @@ namespace TrainingCoop
             tQtyItem.Text = dataGridView1.Rows[e.RowIndex].Cells[5].Value.ToString();
             tAmountItem.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
             //tNumber.Text = dataGridView1.Rows[e.RowIndex].Cells[0].Value + "";
+            EButtonT();
         }
     }
 }

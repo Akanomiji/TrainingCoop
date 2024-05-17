@@ -19,11 +19,33 @@ namespace TrainingCoop
             InitializeComponent();
         }
 
+
+        private int searchCode()
+        {
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[1].Value + "" == itemCode.Text)
+                {
+                    return i;
+
+                }
+            }
+            return -1;
+        }
+
         private void itemCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 itemName.Focus();
+                int index = searchCode();
+                if (index >= 0)
+                {
+                    MessageBox.Show("ข้อมูลซ้ำ");
+                    itemCode.Focus();
+                    return;
+                }
+                /*
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
                     if (dataGridView1.Rows[i].Cells[1].Value + "" == itemCode.Text)
@@ -46,6 +68,7 @@ namespace TrainingCoop
                         amount.Text = dataGridView1.Rows[i].Cells[7].Value.ToString();
                     }
                 }
+                */
             }
         }
 
@@ -141,6 +164,18 @@ namespace TrainingCoop
             }
         }
 
+        private void EButtonF()
+        {
+            bEdit.Enabled = false;
+            bRemove.Enabled = false;
+        }
+
+        private void EButtonT()
+        {
+            bEdit.Enabled = true;
+            bRemove.Enabled = true;
+        }
+
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             itemCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
@@ -154,9 +189,10 @@ namespace TrainingCoop
             else { noVat.Checked = true; }
             qty.Text = dataGridView1.Rows[e.RowIndex].Cells[6].Value.ToString();
             amount.Text = dataGridView1.Rows[e.RowIndex].Cells[7].Value.ToString();
-
+            EButtonT();
 
         }
+
 
         private void bAdd_Click(object sender, EventArgs e)
         {
@@ -176,7 +212,7 @@ namespace TrainingCoop
             double tTotalA = double.Parse(tTotalAmount.Text);
             tTotalA = tTotalA + amt;
             tTotalAmount.Text = tTotalA.ToString();
-
+            EButtonF();
             bNew.PerformClick();
 
         }

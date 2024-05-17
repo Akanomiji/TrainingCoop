@@ -36,6 +36,7 @@
             Menudepartment = new ToolStripMenuItem();
             MenuItemType = new ToolStripMenuItem();
             aboutToolStripMenuItem = new ToolStripMenuItem();
+            inVoiceToolStripMenuItem = new ToolStripMenuItem();
             menuStrip1.SuspendLayout();
             SuspendLayout();
             // 
@@ -93,9 +94,17 @@
             // 
             // aboutToolStripMenuItem
             // 
+            aboutToolStripMenuItem.DropDownItems.AddRange(new ToolStripItem[] { inVoiceToolStripMenuItem });
             aboutToolStripMenuItem.Name = "aboutToolStripMenuItem";
             aboutToolStripMenuItem.Size = new Size(50, 26);
             aboutToolStripMenuItem.Text = "about";
+            // 
+            // inVoiceToolStripMenuItem
+            // 
+            inVoiceToolStripMenuItem.Name = "inVoiceToolStripMenuItem";
+            inVoiceToolStripMenuItem.Size = new Size(180, 22);
+            inVoiceToolStripMenuItem.Text = "InVoice";
+            inVoiceToolStripMenuItem.Click += inVoiceToolStripMenuItem_Click;
             // 
             // MainMenus
             // 
@@ -122,5 +131,6 @@
         private ToolStripMenuItem Menudepartment;
         private ToolStripMenuItem MenuItemType;
         private ToolStripMenuItem aboutToolStripMenuItem;
+        private ToolStripMenuItem inVoiceToolStripMenuItem;
     }
 }

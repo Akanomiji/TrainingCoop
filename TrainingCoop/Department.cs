@@ -17,12 +17,33 @@ namespace TrainingCoop
         {
             InitializeComponent();
         }
+        private int searchCode()
+        {
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[1].Value + "" == departmentCode.Text)
+                {
+
+                    return i;
+
+                }
+            }
+            return -1;
+        }
 
         private void departmentCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 departmentName.Focus();
+                int index = searchCode();
+                if (index >= 0)
+                {
+                    MessageBox.Show("ข้อมูลซ้ำ");
+                    departmentCode.Focus();
+                    return;
+                }
+                /*
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
                     if (dataGridView1.Rows[i].Cells[1].Value + "" == departmentCode.Text)
@@ -33,6 +54,7 @@ namespace TrainingCoop
                         //County.Text = dataGridView1.Rows[i].Cells[3].Value + "";
                     }
                 }
+                */
             }
         }
 
@@ -56,11 +78,23 @@ namespace TrainingCoop
                 this.Close();
             }
         }
+        private void EButtonF()
+        {
+            bEdit.Enabled = false;
+            bRemove.Enabled = false;
+        }
+
+        private void EButtonT()
+        {
+            bEdit.Enabled = true;
+            bRemove.Enabled = true;
+        }
 
         private void dataGridView1_CellClick(object sender, DataGridViewCellEventArgs e)
         {
             departmentCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             departmentName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
+            EButtonT();
         }
 
         private void bAdd_Click(object sender, EventArgs e)
@@ -70,6 +104,7 @@ namespace TrainingCoop
             dataGridView1.Rows[r].Cells[0].Value = r + 1;
             dataGridView1.Rows[r].Cells[1].Value = departmentCode.Text;
             dataGridView1.Rows[r].Cells[2].Value = departmentName.Text;
+            EButtonF();
         }
 
         private void bEdit_Click(object sender, EventArgs e)

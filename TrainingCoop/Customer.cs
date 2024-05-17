@@ -17,12 +17,31 @@ namespace TrainingCoop
         {
             InitializeComponent();
         }
+        private int searchCode()
+        {
+            for (int i = 0; i < dataGridView1.RowCount; i++)
+            {
+                if (dataGridView1.Rows[i].Cells[1].Value + "" == customerCode.Text)
+                {
+                    return i;
 
+                }
+            }
+            return -1;
+        }
         private void customerCode_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
             {
                 customerName.Focus();
+                int index = searchCode();
+                if (index >= 0)
+                {
+                    MessageBox.Show("ข้อมูลซ้ำ");
+                    customerCode.Focus();
+                    return;
+                }
+                /*
                 for (int i = 0; i < dataGridView1.RowCount; i++)
                 {
                     if (dataGridView1.Rows[i].Cells[1].Value + "" == customerCode.Text)
@@ -33,6 +52,7 @@ namespace TrainingCoop
                         County.Text = dataGridView1.Rows[i].Cells[3].Value + "";
                     }
                 }
+                */
             }
         }
 
@@ -59,6 +79,19 @@ namespace TrainingCoop
             }
         }
 
+
+        private void EButtonF()
+        {
+            bEdit.Enabled = false;
+            bRemove.Enabled = false;
+        }
+
+        private void EButtonT()
+        {
+            bEdit.Enabled = true;
+            bRemove.Enabled = true;
+        }
+
         private void bAdd_Click(object sender, EventArgs e)
         {
             dataGridView1.Rows.Add();
@@ -67,7 +100,7 @@ namespace TrainingCoop
             dataGridView1.Rows[r].Cells[1].Value = customerCode.Text;
             dataGridView1.Rows[r].Cells[2].Value = customerName.Text;
             dataGridView1.Rows[r].Cells[3].Value = County.Text;
-
+            EButtonF();
             bNew.PerformClick();
         }
 
@@ -76,6 +109,7 @@ namespace TrainingCoop
             customerCode.Text = dataGridView1.Rows[e.RowIndex].Cells[1].Value.ToString();
             customerName.Text = dataGridView1.Rows[e.RowIndex].Cells[2].Value.ToString();
             County.Text = dataGridView1.Rows[e.RowIndex].Cells[3].Value.ToString();
+            EButtonT();
         }
 
         private void bEdit_Click(object sender, EventArgs e)
