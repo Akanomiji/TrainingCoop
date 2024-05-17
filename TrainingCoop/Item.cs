@@ -28,6 +28,7 @@ namespace TrainingCoop
                 {
                     if (dataGridView1.Rows[i].Cells[1].Value + "" == itemCode.Text)
                     {
+                        dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[0];
                         itemName.Text = dataGridView1.Rows[i].Cells[2].Value.ToString();
                         typeName.Text = dataGridView1.Rows[i].Cells[3].Value.ToString();
                         price.Text = dataGridView1.Rows[i].Cells[4].Value.ToString();
@@ -161,6 +162,7 @@ namespace TrainingCoop
         {
             dataGridView1.Rows.Add();
             int r = dataGridView1.Rows.Count - 1;
+
             dataGridView1.Rows[r].Cells[0].Value = r + 1;
             dataGridView1.Rows[r].Cells[1].Value = itemCode.Text;
             dataGridView1.Rows[r].Cells[2].Value = itemName.Text;

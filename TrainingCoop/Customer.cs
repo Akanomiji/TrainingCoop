@@ -27,6 +27,7 @@ namespace TrainingCoop
                 {
                     if (dataGridView1.Rows[i].Cells[1].Value + "" == customerCode.Text)
                     {
+                        dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[0];
                         customerCode.Text = dataGridView1.Rows[i].Cells[1].Value + "";
                         customerName.Text = dataGridView1.Rows[i].Cells[2].Value + "";
                         County.Text = dataGridView1.Rows[i].Cells[3].Value + "";

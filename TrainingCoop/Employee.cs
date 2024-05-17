@@ -32,6 +32,7 @@ namespace TrainingCoop
                 {
                     if (dataGridView1.Rows[i].Cells[1].Value + "" == employeeCode.Text)
                     {
+                        dataGridView1.CurrentCell = dataGridView1.Rows[i].Cells[0];
                         employeeCode.Text = dataGridView1.Rows[i].Cells[1].Value + "";
                         employeeName.Text = dataGridView1.Rows[i].Cells[2].Value + "";
                         Salary.Text = dataGridView1.Rows[i].Cells[3].Value + "";
