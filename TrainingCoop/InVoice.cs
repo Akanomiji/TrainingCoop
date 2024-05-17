@@ -7,6 +7,7 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using static System.Windows.Forms.VisualStyles.VisualStyleElement.Button;
 
 namespace TrainingCoop
 {
@@ -129,6 +130,7 @@ namespace TrainingCoop
             dataGridView1.Rows.Add();
             int r = dataGridView1.Rows.Count - 1;
             dataGridView1.Rows[r].Cells[0].Value = r + 1;
+            tNumber.Text = int.Parse(dataGridView1.Rows[r].Cells[0].Value + "") + 1 + "";
             dataGridView1.Rows[r].Cells[1].Value = tCodeItem.Text;
             dataGridView1.Rows[r].Cells[2].Value = tNameItem.Text;
             dataGridView1.Rows[r].Cells[3].Value = tTypeItem.Text;
@@ -140,15 +142,18 @@ namespace TrainingCoop
 
 
             double amt = double.Parse(tAmountItem.Text);
-            double tTotalA = double.Parse(tAmountItem.Text);
-            tTotalA = amt;
-            tTotalAmount.Text = tTotalA.ToString();
+            double tTotalA = double.Parse(tTotalAmount.Text);
             double vat = 0.07;
-            double total;
-            vat = vat* tTotalA ;
+            double total = 0;
+            tTotalA = tTotalA+amt;
+            tTotalAmount.Text = tTotalA.ToString();
+            
+            vat = tTotalA*vat;
+            
+            total = tTotalA + vat;
             tVat.Text = vat.ToString("#,##0.00");
-            total = tTotalA - vat;
             tTotal.Text = total.ToString("#,##0.00");
+            tTotalAmount.Text = tTotalA.ToString("#,##0.00");
 
             //bNew.PerformClick();
 
@@ -163,23 +168,48 @@ namespace TrainingCoop
             dataGridView1.Rows[r].Cells[3].Value = tTypeItem.Text;
             dataGridView1.Rows[r].Cells[4].Value = tPriceItem.Text;
             dataGridView1.Rows[r].Cells[5].Value = tQtyItem.Text;
-            dataGridView1.Rows[r].Cells[6].Value = tAmountItem;
+            
 
 
             double amt = double.Parse(tAmountItem.Text);
-            double tTotalA = double.Parse(tAmountItem.Text);
-            tTotalA = amt;
-            tTotalAmount.Text = tTotalA.ToString();
+            double tTotalA = double.Parse(tTotalAmount.Text);
+            double editAmt = double.Parse(dataGridView1.Rows[r].Cells[6].Value + "");
             double vat = 0.07;
-            double total;
-            vat = vat * tTotalA;
+            double total = 0;
+            tTotalA = (tTotalA - editAmt) + amt;
+            tTotalAmount.Text = tTotalA.ToString();
+
+            vat = tTotalA * vat;
+
+            total = tTotalA + vat;
             tVat.Text = vat.ToString("#,##0.00");
-            total = tTotalA - vat;
             tTotal.Text = total.ToString("#,##0.00");
+            tTotalAmount.Text = tTotalA.ToString("#,##0.00");
+
+            dataGridView1.Rows[r].Cells[6].Value = tAmountItem;
         }
 
         private void bRemove_Click(object sender, EventArgs e)
         {
+
+            int r = dataGridView1.CurrentCell.RowIndex;
+            double amt = double.Parse(dataGridView1.Rows[r].Cells[6].Value + "");
+            double totalAmt = double.Parse(tTotalAmount.Text);
+            double Vat = 0.07, total = 0;
+            totalAmt = totalAmt - amt;
+            Vat = totalAmt * Vat;
+            total = totalAmt + Vat;
+            tTotalAmount.Text = totalAmt.ToString("#,##0.00");
+            tVat.Text = Vat.ToString("#,##0.00");
+            tTotal.Text = total.ToString("#,##0.00");
+
+            dataGridView1.Rows.RemoveAt(r);
+            tNumber.Text = dataGridView1.Rows.Count + 1 + "";
+            for (int i = 0; i < dataGridView1.Rows.Count; i++)
+            {
+                dataGridView1.Rows[i].Cells[0].Value = i + 1;
+            }
+            /*
             int r = dataGridView1.CurrentCell.RowIndex;
             double amt = double.Parse(dataGridView1.Rows[r].Cells[6].Value + "");
             double tTotalA = double.Parse(tTotalAmount.Text);
@@ -193,10 +223,19 @@ namespace TrainingCoop
             tTotal.Text = total.ToString("#,##0.00");
             dataGridView1.Rows.RemoveAt(r);
             for (int i = 0; i < dataGridView1.Rows.Count; i++) { dataGridView1.Rows[i].Cells[0].Value = i + 1; }
+            */
         }
 
         private void bNew_Click(object sender, EventArgs e)
         {
+            tCodeItem.Clear();
+            tNameItem.Clear();
+            tTypeItem.Clear();
+            tPriceItem.Clear();
+            tQtyItem.Clear();
+            tAmountItem.Clear();
+            tCodeItem.Focus();
+            /*
             tAmountItem.Clear();
             tCodeCustomer.Clear();
             tCodeItem.Clear();
@@ -206,18 +245,30 @@ namespace TrainingCoop
             tNameItem.Clear();
             tQtyItem.Clear();
             tAmountItem.Clear();
-            tTotalAmount.Clear();
+            //tTotalAmount.Clear();
             tVat.Clear();
-            tTotal.Clear();
+            //tTotal.Clear();
             tPriceItem.Clear();
             tProvinceCustomer.Clear();
             tTypeItem.Clear();
             tNameCustomer.Clear();
+            */
         }
 
         private void bShow_Click(object sender, EventArgs e)
         {
-
+            MessageBox.Show(label2.Text + "\t" + dateTimePicker1.Text + "\n\n" +
+                           gCustomer.Text + "\n" +
+                           label3.Text + "\t\t" + tCodeCustomer.Text + "\n" +
+                           label4.Text + "\t\t" + tNameCustomer.Text + "\n" +
+                           label5.Text + "\t\t" + tProvinceCustomer.Text + "\n\n" +
+                           gItem.Text + "\n" +
+                           label14.Text + "\t" + tTotalAmount.Text + "\n" +
+                           label15.Text + "\t\t" + tVat.Text + "\n" +
+                           label16.Text + "\t\t" + tTotal.Text + "\n\n" +
+                           gEmployee.Text + "\n" +
+                           label12.Text + "\t\t" + tEmployeeCode.Text + "\n" +
+                           label13.Text + "\t\t" + tEmployeeName.Text + "\n", "Invoice");
         }
 
         private void bClose_Click(object sender, EventArgs e)

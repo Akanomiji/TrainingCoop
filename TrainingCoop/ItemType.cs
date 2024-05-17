@@ -116,7 +116,9 @@ namespace TrainingCoop
             {
                 if (dataGridView1.Rows[i].Cells[1].Value + "" == typeCode.Text ) 
                 {
+                    dataGridView1.Rows[i].Cells[2].Value = i;
                     typeName.Text = dataGridView1.Rows[i].Cells[2].Value + "";
+                    break;
                 }
             }
         }
